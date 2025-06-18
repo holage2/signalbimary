@@ -1,0 +1,113 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222.2 84% 4.9%; /* Assuming dark theme base */
+  --foreground: 210 40% 98%;
+  
+  --card: 222.2 84% 6.5%; /* Slightly lighter than bg for cards, more distinct */
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 6%; /* For popovers like select dropdown */
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 205 90% 50%; /* A vibrant sky blue for primary actions */
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 217.2 32.6% 17.5%; /* Darker blue/slate for secondary elements */
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 28%; /* Muted tones for less important text/borders, slightly lighter */
+  --muted-foreground: 215 20.2% 68.1%; /* Lighter muted text */
+
+  --accent: 210 80% 60%; /* Accent for hover states etc., a lighter, brighter blue */
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 75% 60%; /* A clear, slightly brighter red for destructive actions/sell signals */
+  --destructive-foreground: 0 0% 100%; /* White text on red for better contrast */
+
+  --success: 145 65% 50%; /* A clear, vibrant green for success/buy signals */
+  --success-foreground: 145 0% 100%; /* White text on green */
+
+  --border: 217.2 32.6% 25%; /* Borders for inputs, cards, slightly more visible */
+  --input: 217.2 32.6% 12%; /* Input background, slightly darker for depth */
+  --ring: 205 90% 55%; /* Focus ring color, matching primary */
+
+  --radius: 0.75rem; /* Slightly larger radius for a softer, modern look */
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  
+  --card: 222.2 84% 6.5%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 6%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 205 90% 50%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 28%;
+  --muted-foreground: 215 20.2% 68.1%;
+
+  --accent: 210 80% 60%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 75% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --success: 145 65% 50%;
+  --success-foreground: 145 0% 100%;
+
+  --border: 217.2 32.6% 25%;
+  --input: 217.2 32.6% 12%;
+  --ring: 205 90% 55%;
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased; /* Added antialiasing */
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  /* Improve focus visibility globally */
+  *:focus-visible {
+    @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Custom scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+  width: 10px; /* Slightly wider */
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background) / 0.7); /* More opaque track */
+  border-radius: var(--radius);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted) / 0.8); /* More opaque thumb */
+  border-radius: var(--radius);
+  border: 2px solid hsl(var(--background) / 0.7); /* Border around thumb */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent) / 0.9); 
+}
+
+/* Ensure select dropdowns are styled correctly */
+.radix-select-content {
+  @apply bg-popover text-popover-foreground border border-border rounded-md shadow-lg;
+}
+.radix-select-item {
+  @apply hover:bg-accent focus:bg-accent !important; /* Ensure hover/focus styles apply */
+}
